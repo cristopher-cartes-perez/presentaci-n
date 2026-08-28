@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristopher Cartes — Ciberseguridad &amp; Desarrollo</title>
+<meta name="description" content="Portafolio de Cristopher Cartes, Ingeniero Civil Informático en transición hacia ciberseguridad y desarrollo de software.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0A0E13;
+    --surface: #10161D;
+    --surface-2: #161D25;
+    --border: #212B34;
+    --text: #E7ECEF;
+    --text-muted: #7C8B99;
+    --amber: #F2A65A;
+    --cyan: #4CC9F0;
+    --green: #4ADE80;
+    --red: #F26D6D;
+    --mono: 'Space Mono', 'IBM Plex Mono', monospace;
+    --sans: 'Public Sans', -apple-system, sans-serif;
+    --radius: 3px;
+  }
+
+  *{ box-sizing: border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    line-height: 1.6;
+    font-size: 16px;
+    background-image:
+      linear-gradient(var(--border) 1px, transparent 1px),
+      linear-gradient(90deg, var(--border) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: -1px -1px;
+    background-attachment: fixed;
+  }
+
+  a{ color: var(--cyan); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+
+  :focus-visible{
+    outline: 2px solid var(--amber);
+    outline-offset: 3px;
+  }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .label{
+    font-family: var(--mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+
+  .label::before{ content: "// "; color: var(--text-muted); }
+
+  h1, h2, h3{
+    font-family: var(--mono);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+  }
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(10,14,19,0.86);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 16px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-brand{
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .nav-brand span{ color: var(--amber); }
+  .nav-links{
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .nav-links a{ color: var(--text-muted); }
+  .nav-links a:hover{ color: var(--cyan); text-decoration: none; }
+  .nav-status{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    letter-spacing: 0.08em;
+  }
+  .dot{
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 0 rgba(74,222,128,0.6);
+    animation: pulse 2.2s infinite;
+  }
+  @keyframes pulse{
+    0%{ box-shadow: 0 0 0 0 rgba(74,222,128,0.45); }
+    70%{ box-shadow: 0 0 0 7px rgba(74,222,128,0); }
+    100%{ box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+  }
+  @media (max-width: 720px){
+    .nav-links{ display:none; }
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 88px 0 64px;
+  }
+  .hero-grid{
+    display: grid;
+    grid-template-columns: 1.05fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 880px){
+    .hero-grid{ grid-template-columns: 1fr; }
+  }
+
+  .hero h1{
+    font-size: clamp(34px, 5vw, 52px);
+    margin-bottom: 14px;
+  }
+  .hero h1 .accent{ color: var(--amber); }
+  .hero-role{
+    font-family: var(--mono);
+    color: var(--cyan);
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+  .hero-desc{
+    color: var(--text-muted);
+    max-width: 52ch;
+    margin-bottom: 30px;
+    font-size: 16px;
+  }
+  .hero-cta{
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color .15s ease, transform .15s ease, background .15s ease;
+  }
+  .btn:hover{ text-decoration:none; transform: translateY(-1px); }
+  .btn-primary{
+    background: var(--amber);
+    color: #10161D;
+    border-color: var(--amber);
+    font-weight: 700;
+  }
+  .btn-primary:hover{ background: #f5b877; }
+  .btn-ghost{ color: var(--text); }
+  .btn-ghost:hover{ border-color: var(--cyan); color: var(--cyan); }
+
+  /* ---------- TERMINAL ---------- */
+  .terminal{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    background: var(--surface-2);
+    padding: 10px 14px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .terminal-bar .tdot{ width: 10px; height: 10px; border-radius: 50%; }
+  .tdot.r{ background: #F26D6D; }
+  .tdot.y{ background: #F2C46D; }
+  .tdot.g{ background: #4ADE80; }
+  .terminal-title{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-left: 8px;
+  }
+  .terminal-body{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 18px;
+    height: 360px;
+    overflow-y: auto;
+    color: #D6E2E8;
+  }
+  .terminal-body::-webkit-scrollbar{ width: 8px; }
+  .terminal-body::-webkit-scrollbar-thumb{ background: var(--border); border-radius: 4px; }
+  .term-line{ margin-bottom: 6px; white-space: pre-wrap; word-break: break-word; }
+  .term-line.dim{ color: var(--text-muted); }
+  .term-line.cyan{ color: var(--cyan); }
+  .term-line.amber{ color: var(--amber); }
+  .term-line.green{ color: var(--green); }
+  .term-prompt{ color: var(--green); }
+  .term-cmdline{
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-top: 4px;
+  }
+  .term-cmdline input{
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 13px;
+    outline: none;
+  }
+  .term-hint{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    padding: 8px 18px 14px;
+    border-top: 1px solid var(--border);
+  }
+  .term-hint kbd{
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    padding: 1px 6px;
+    border-radius: 3px;
+    color: var(--cyan);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 72px 0; border-top: 1px solid var(--border); }
+  .section-head{ margin-bottom: 36px; }
+  .section-head h2{ font-size: 28px; margin-top: 8px; }
+
+  /* About */
+  .about-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 780px){ .about-grid{ grid-template-columns: 1fr; } }
+  .about-text p{ color: var(--text-muted); margin-bottom: 16px; max-width: 58ch; }
+  .about-text strong{ color: var(--text); font-weight: 600; }
+
+  .fact-list{ list-style:none; }
+  .fact-list li{
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+  }
+  .fact-list li span:first-child{ color: var(--text-muted); font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .fact-list li span:last-child{ color: var(--text); text-align: right; }
+
+  /* Skills */
+  .skills-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 880px){ .skills-grid{ grid-template-columns: 1fr; } }
+  .skill-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .skill-card h3{
+    font-size: 14px;
+    color: var(--amber);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .chip-row{ display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip{
+    font-family: var(--mono);
+    font-size: 12px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    color: var(--text);
+    background: var(--surface-2);
+  }
+
+  /* Experience */
+  .timeline{ position: relative; padding-left: 28px; }
+  .timeline::before{
+    content:"";
+    position: absolute;
+    left: 4px; top: 6px; bottom: 6px;
+    width: 1px;
+    background: var(--border);
+  }
+  .tl-item{ position: relative; padding-bottom: 34px; }
+  .tl-item:last-child{ padding-bottom: 0; }
+  .tl-item::before{
+    content:"";
+    position: absolute;
+    left: -28px; top: 5px;
+    width: 9px; height: 9px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 2px solid var(--cyan);
+  }
+  .tl-date{ font-family: var(--mono); font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .tl-role{ font-size: 17px; font-weight: 700; margin-bottom: 2px; }
+  .tl-org{ color: var(--cyan); font-size: 14px; margin-bottom: 10px; font-family: var(--mono); }
+  .tl-desc{ color: var(--text-muted); font-size: 14px; max-width: 62ch; }
+
+  /* Projects */
+  .projects-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 780px){ .projects-grid{ grid-template-columns: 1fr; } }
+  .project-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .project-card .ptag{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .project-card h3{ font-size: 18px; }
+  .project-card p{ color: var(--text-muted); font-size: 14px; }
+  .project-note{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--amber);
+    border-top: 1px dashed var(--border);
+    padding-top: 10px;
+    margin-top: auto;
+  }
+
+  /* Contact */
+  .contact-box{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 32px;
+    align-items: center;
+  }
+  @media (max-width: 780px){ .contact-box{ grid-template-columns: 1fr; } }
+  .contact-box h2{ font-size: 24px; margin-bottom: 10px; }
+  .contact-box p{ color: var(--text-muted); max-width: 46ch; }
+  .contact-links{ list-style:none; display: flex; flex-direction: column; gap: 12px; }
+  .contact-links li{
+    font-family: var(--mono);
+    font-size: 14px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 10px;
+  }
+  .contact-links li span:first-child{ color: var(--text-muted); }
+
+  footer{
+    padding: 28px 0 40px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .dot{ animation: none; }
+    *{ transition: none !important; animation-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <div class="nav-brand">cristopher<span>@</span>cartes</div>
+    <ul class="nav-links">
+      <li><a href="#about">sobre_mi</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">experiencia</a></li>
+      <li><a href="#projects">proyectos</a></li>
+      <li><a href="#contact">contacto</a></li>
+    </ul>
+    <div class="nav-status"><span class="dot"></span>OPEN_TO_WORK</div>
+  </div>
+</header>
+
+<main>
+  <section class="hero wrap" style="border-top:none;">
+    <div class="hero-grid">
+      <div>
+        <p class="label">Ingeniero Civil Informático</p>
+        <h1>Cristopher Cartes<br>construye y <span class="accent">rompe</span> sistemas<br>para entenderlos mejor.</h1>
+        <p class="hero-role">$ ciberseguridad · desarrollo de software · Santiago, Chile</p>
+        <p class="hero-desc">
+          Vengo del área operativa de infraestructura TI y estoy moviendo mi carrera hacia
+          ciberseguridad y desarrollo. Esta página es, de paso, la primera demostración:
+          la terminal de la derecha es real — pruébala.
+        </p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="mailto:c.cartesperez@uandresbello.edu">Contactar</a>
+          <a class="btn btn-ghost" href="CV_Cristopher_Cartes.pdf">Descargar CV ↓</a>
+          <a class="btn btn-ghost" href="https://github.com/cristopher-cartes-perez" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+
+      <div class="terminal" id="terminal">
+        <div class="terminal-bar">
+          <span class="tdot r"></span><span class="tdot y"></span><span class="tdot g"></span>
+          <span class="terminal-title">cristopher@portfolio: ~</span>
+        </div>
+        <div class="terminal-body" id="termBody" tabindex="0" aria-label="Terminal interactiva del portafolio"></div>
+        <div class="term-cmdline wrap" style="padding: 0 18px 14px;">
+          <span class="term-prompt">$</span>
+          <input id="termInput" type="text" autocomplete="off" spellcheck="false"
+                 placeholder="escribe 'help' y presiona enter" aria-label="Escribe un comando">
+        </div>
+        <div class="term-hint">Prueba <kbd>help</kbd>, <kbd>skills</kbd>, <kbd>experience</kbd> o <kbd>contact</kbd></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap">
+    <div class="section-head">
+      <p class="label">01 — Sobre mí</p>
+      <h2>De mesa de ayuda a línea de comandos.</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Soy <strong>Ingeniero Civil Informático</strong>, egresado de la Universidad Andrés Bello.
+          Empecé mi carrera en soporte TI y continuidad operativa, un área que me obligó a aprender
+          rápido cómo funciona la infraestructura por dentro y a resolver problemas bajo presión real,
+          no de laboratorio.
+        </p>
+        <p>
+          Durante la universidad exploré el lado ofensivo de la seguridad: <strong>Kali Linux</strong>,
+          <strong>Burp Suite</strong> y máquinas de <strong>Hack The Box</strong>, además de participar
+          en un par de competencias <strong>CTF</strong>. Hoy quiero llevar esa curiosidad a un rol
+          profesional en ciberseguridad o desarrollo de software.
+        </p>
+        <p>
+          Fuera de lo técnico, tengo formación previa como Técnico en Enfermería — algo que no está
+          en el mismo rubro, pero que me dejó buenos hábitos de trabajo en equipo y calma bajo presión.
+        </p>
+      </div>
+      <ul class="fact-list">
+        <li><span>Ubicación</span><span>Santiago, Chile</span></li>
+        <li><span>Formación</span><span>Ing. Civil Informática — UNAB</span></li>
+        <li><span>Enfoque actual</span><span>Ciberseguridad / Desarrollo</span></li>
+        <li><span>Rol actual</span><span>Continuidad Operativa — Casino Express</span></li>
+        <li><span>Idiomas</span><span>Español (nativo), Inglés (A2)</span></li>
+        <li><span>Disponibilidad</span><span>Abierto a nuevas oportunidades</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="skills" class="wrap">
+    <div class="section-head">
+      <p class="label">02 — Conocimientos</p>
+      <h2>Stack técnico.</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Seguridad</h3>
+        <div class="chip-row">
+          <span class="chip">Kali Linux</span>
+          <span class="chip">Burp Suite</span>
+          <span class="chip">Análisis de vulnerabilidades</span>
+          <span class="chip">Hack The Box</span>
+          <span class="chip">CTF</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Desarrollo</h3>
+        <div class="chip-row">
+          <span class="chip">Python</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">SQL</span>
+          <span class="chip">HTML / CSS</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Cloud &amp; Infraestructura</h3>
+        <div class="chip-row">
+          <span class="chip">AWS (fundamentos)</span>
+          <span class="chip">Windows Server</span>
+          <span class="chip">Linux</span>
+          <span class="chip">Redes</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience" class="wrap">
+    <div class="section-head">
+      <p class="label">03 — Experiencia</p>
+      <h2>Trayectoria profesional.</h2>
+    </div>
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">01/2026 — Actualidad</div>
+        <div class="tl-role">Ingeniero en Continuidad Operativa / Mesa de Ayuda N2</div>
+        <div class="tl-org">Casino Express</div>
+        <div class="tl-desc">Responsable de la continuidad operativa y seguridad de la infraestructura tecnológica del recinto; resolución de incidentes escalados según protocolo.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">10/2025 — 01/2026</div>
+        <div class="tl-role">Practicante de TI</div>
+        <div class="tl-org">Casino Express</div>
+        <div class="tl-desc">Apoyo en la continuidad operativa y seguridad de la infraestructura tecnológica, primer acercamiento profesional al área.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">03/2023 — 05/2023</div>
+        <div class="tl-role">Soporte / Administrativo</div>
+        <div class="tl-org">Carprint</div>
+        <div class="tl-desc">Funciones de apoyo en el área operativa y administrativa.</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="wrap">
+    <div class="section-head">
+      <p class="label">04 — Práctica</p>
+      <h2>Retos de seguridad.</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="ptag">● Hack The Box</span>
+        <h3>Máquinas resueltas</h3>
+        <p>Resolución de máquinas de la plataforma Hack The Box durante mi formación universitaria, aplicando enumeración, explotación y escalamiento de privilegios en entornos controlados.</p>
+        <div class="project-note">nota: reemplazar por el link a tu perfil de HTB cuando recuperes el acceso</div>
+      </div>
+      <div class="project-card">
+        <span class="ptag">● CTF</span>
+        <h3>Capture The Flag</h3>
+        <p>Participación en dos competencias CTF durante la universidad, resolviendo desafíos de seguridad ofensiva en un entorno de equipo y tiempo limitado.</p>
+        <div class="project-note">nota: agregar nombre y fecha de cada CTF cuando los tengas a mano</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="wrap" style="border-bottom:1px solid var(--border);">
+    <div class="contact-box">
+      <div>
+        <h2>¿Conversamos?</h2>
+        <p>Estoy buscando oportunidades en ciberseguridad o desarrollo de software. Si mi perfil calza con lo que necesitas, escríbeme.</p>
+      </div>
+      <ul class="contact-links">
+        <li><span>email</span><a href="mailto:c.cartesperez@uandresbello.edu">c.cartesperez@uandresbello.edu</a></li>
+        <li><span>teléfono</span><a href="tel:+56923808260">+56 9 2380 8260</a></li>
+        <li><span>linkedin</span><a href="https://www.linkedin.com/in/cristophercartes" target="_blank" rel="noopener">/in/cristophercartes</a></li>
+        <li><span>github</span><a href="https://github.com/cristopher-cartes-perez" target="_blank" rel="noopener">/cristopher-cartes-perez</a></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Cristopher Cartes — construido con HTML, CSS y JS puro, alojado en GitHub Pages.</div>
+</footer>
+
+<script>
+(function(){
+  const body = document.getElementById('termBody');
+  const input = document.getElementById('termInput');
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function line(text, cls){
+    const el = document.createElement('div');
+    el.className = 'term-line' + (cls ? ' ' + cls : '');
+    el.textContent = text;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  function lineHTML(html, cls){
+    const el = document.createElement('div');
+    el.className = 'term-line' + (cls ? ' ' + cls : '');
+    el.innerHTML = html;
+    body.appendChild(el);
+    body.scrollTop = body.scrollHeight;
+    return el;
+  }
+
+  async function typeLine(text, cls){
+    if(reduced){ line(text, cls); return; }
+    const el = document.createElement('div');
+    el.className = 'term-line' + (cls ? ' ' + cls : '');
+    body.appendChild(el);
+    for(let i=0; i<text.length; i++){
+      el.textContent += text[i];
+      body.scrollTop = body.scrollHeight;
+      await new Promise(r => setTimeout(r, 8));
+    }
+  }
+
+  const commands = {
+    help(){
+      lineHTML('Comandos disponibles:', 'amber');
+      [
+        ['whoami', 'quién soy, en una línea'],
+        ['about', 'resumen profesional'],
+        ['skills', 'stack técnico'],
+        ['experience', 'trayectoria laboral'],
+        ['projects', 'retos de seguridad (HTB / CTF)'],
+        ['contact', 'cómo contactarme'],
+        ['clear', 'limpiar la terminal'],
+      ].forEach(([c,d]) => lineHTML(`  <span class="cyan">${c.padEnd(12,' ')}</span> ${d}`));
+    },
+    whoami(){
+      line('cristopher — ingeniero civil informático, en transición a ciberseguridad y desarrollo.');
+    },
+    about(){
+      line('Empecé en soporte TI / continuidad operativa. Hoy exploro pentesting (Kali, Burp Suite,');
+      line('Hack The Box) y desarrollo (Python, JS, SQL). Buscando mi próximo desafío profesional.');
+    },
+    skills(){
+      lineHTML('<span class="amber">seguridad</span>     Kali Linux · Burp Suite · Análisis de vulnerabilidades · HTB · CTF');
+      lineHTML('<span class="amber">desarrollo</span>    Python · JavaScript · SQL · HTML/CSS');
+      lineHTML('<span class="amber">cloud/infra</span>   AWS (fundamentos) · Windows Server · Linux · Redes');
+    },
+    experience(){
+      lineHTML('<span class="cyan">2026 – actualidad</span>  Ingeniero en Continuidad Operativa — Casino Express');
+      lineHTML('<span class="cyan">2025 – 2026</span>        Practicante de TI — Casino Express');
+      lineHTML('<span class="cyan">2023</span>               Soporte / Administrativo — Carprint');
+    },
+    projects(){
+      line('Hack The Box  — máquinas resueltas durante la universidad (enumeración, explotación, PrivEsc).');
+      line('CTF           — participación en 2 competencias universitarias de seguridad ofensiva.');
+    },
+    contact(){
+      lineHTML('email     <a href="mailto:c.cartesperez@uandresbello.edu">c.cartesperez@uandresbello.edu</a>');
+      lineHTML('linkedin  <a href="https://www.linkedin.com/in/cristophercartes" target="_blank" rel="noopener">/in/cristophercartes</a>');
+      lineHTML('github    <a href="https://github.com/cristopher-cartes-perez" target="_blank" rel="noopener">/cristopher-cartes-perez</a>');
+    },
+    clear(){
+      body.innerHTML = '';
+    },
+    ls(){ commands.help(); },
+    sudo(rest){
+      if(rest.join(' ').toLowerCase().includes('hire cristopher')){
+        line('[sudo] contratando a cristopher... acceso concedido. ✔', 'green');
+      } else {
+        line('permission denied: bonita idea, pero esto es solo un portafolio.', 'dim');
+      }
+    }
+  };
+
+  async function boot(){
+    await typeLine('cristopher@portfolio:~$ iniciando sesión...', 'dim');
+    await typeLine('cargando perfil profesional... OK', 'green');
+    line('Escribe "help" para ver los comandos disponibles.', 'dim');
+  }
+
+  input.addEventListener('keydown', (e) => {
+    if(e.key !== 'Enter') return;
+    const raw = input.value.trim();
+    if(!raw) return;
+    lineHTML(`<span class="term-prompt">$</span> ${raw}`);
+    const [cmd, ...rest] = raw.split(/\s+/);
+    const fn = commands[cmd.toLowerCase()];
+    if(fn){ fn(rest); }
+    else { line(`comando no encontrado: ${cmd} — escribe "help"`, 'dim'); }
+    input.value = '';
+  });
+
+  document.getElementById('terminal').addEventListener('click', () => input.focus());
+
+  boot();
+})();
+</script>
+
+</body>
+</html>
