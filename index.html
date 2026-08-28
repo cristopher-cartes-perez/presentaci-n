@@ -412,6 +412,117 @@
     color: var(--text-muted);
   }
 
+  /* ---------- CODE PROJECTS ---------- */
+  .code-grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 780px){ .code-grid{ grid-template-columns: 1fr; } }
+  .code-card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .code-card-head{
+    background: var(--surface-2);
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .code-card-head .tdot{ width: 8px; height: 8px; border-radius: 50%; }
+  .code-card-body{ padding: 22px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+  .code-card h3{ font-size: 17px; }
+  .code-card p{ color: var(--text-muted); font-size: 14px; }
+  .code-card .chip-row{ margin-top: 2px; }
+  .code-card-foot{
+    padding: 14px 22px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .code-card-foot a{
+    font-family: var(--mono);
+    font-size: 12px;
+  }
+  .status-pill{
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 3px 8px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+    color: var(--amber);
+  }
+
+  /* ---------- CONTACT FORM ---------- */
+  .form-grid{
+    display: grid;
+    gap: 14px;
+  }
+  .form-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px){ .form-row{ grid-template-columns: 1fr; } }
+  .field label{
+    display: block;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+  .field input, .field textarea{
+    width: 100%;
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 11px 12px;
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    resize: vertical;
+  }
+  .field input:focus, .field textarea:focus{
+    outline: none;
+    border-color: var(--cyan);
+  }
+  .form-submit{
+    font-family: var(--mono);
+    font-size: 13px;
+    padding: 12px 20px;
+    border-radius: var(--radius);
+    border: 1px solid var(--amber);
+    background: var(--amber);
+    color: #10161D;
+    font-weight: 700;
+    cursor: pointer;
+    align-self: start;
+  }
+  .form-submit:hover{ background: #f5b877; }
+  .form-note{
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .form-status{
+    font-family: var(--mono);
+    font-size: 13px;
+    display: none;
+  }
+  .form-status.show{ display: block; }
+  .form-status.ok{ color: var(--green); }
+  .form-status.err{ color: var(--red); }
+
   @media (prefers-reduced-motion: reduce){
     html{ scroll-behavior: auto; }
     .dot{ animation: none; }
@@ -429,6 +540,7 @@
       <li><a href="#skills">skills</a></li>
       <li><a href="#experience">experiencia</a></li>
       <li><a href="#projects">proyectos</a></li>
+      <li><a href="#code">código</a></li>
       <li><a href="#contact">contacto</a></li>
     </ul>
     <div class="nav-status"><span class="dot"></span>OPEN_TO_WORK</div>
@@ -590,11 +702,86 @@
     </div>
   </section>
 
+  <section id="code" class="wrap">
+    <div class="section-head">
+      <p class="label">05 — Código</p>
+      <h2>Proyectos propios.</h2>
+    </div>
+    <div class="code-grid">
+      <div class="code-card">
+        <div class="code-card-head">
+          <span class="tdot" style="background:#F26D6D"></span>
+          <span class="tdot" style="background:#F2C46D"></span>
+          <span class="tdot" style="background:#4ADE80"></span>
+          port_scanner.py
+        </div>
+        <div class="code-card-body">
+          <h3>Escáner de puertos en Python</h3>
+          <p>Herramienta de línea de comandos que escanea un rango de puertos en una IP y reporta cuáles están abiertos, usando la librería <code>socket</code>. Un clásico para entender cómo funciona el reconocimiento de red desde cero, sin depender de herramientas ya hechas como Nmap.</p>
+          <div class="chip-row">
+            <span class="chip">Python</span>
+            <span class="chip">Sockets</span>
+            <span class="chip">Redes</span>
+          </div>
+        </div>
+        <div class="code-card-foot">
+          <span class="status-pill">por subir a github</span>
+          <a href="https://github.com/cristopher-cartes-perez/port-scanner-python" target="_blank" rel="noopener">ver repo →</a>
+        </div>
+      </div>
+
+      <div class="code-card">
+        <div class="code-card-head">
+          <span class="tdot" style="background:#F26D6D"></span>
+          <span class="tdot" style="background:#F2C46D"></span>
+          <span class="tdot" style="background:#4ADE80"></span>
+          index.html
+        </div>
+        <div class="code-card-body">
+          <h3>Analizador de fortaleza de contraseñas</h3>
+          <p>Aplicación web que evalúa una contraseña en tiempo real (longitud, mayúsculas, números, símbolos, patrones comunes) y estima cuánto tardaría un ataque de fuerza bruta en romperla. Todo corre en el navegador, nada se envía a ningún servidor.</p>
+          <div class="chip-row">
+            <span class="chip">JavaScript</span>
+            <span class="chip">HTML/CSS</span>
+            <span class="chip">Seguridad</span>
+          </div>
+        </div>
+        <div class="code-card-foot">
+          <span class="status-pill">por subir a github</span>
+          <a href="https://github.com/cristopher-cartes-perez/password-strength-checker" target="_blank" rel="noopener">ver repo →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="wrap" style="border-bottom:1px solid var(--border);">
-    <div class="contact-box">
+    <div class="section-head">
+      <p class="label">06 — Contacto</p>
+    </div>
+    <div class="contact-box" style="grid-template-columns: 1.3fr 1fr; align-items: start;">
       <div>
         <h2>¿Conversamos?</h2>
-        <p>Estoy buscando oportunidades en ciberseguridad o desarrollo de software. Si mi perfil calza con lo que necesitas, escríbeme.</p>
+        <p style="margin-bottom:22px;">Estoy buscando oportunidades en ciberseguridad o desarrollo de software. Escríbeme directo desde aquí, o por cualquiera de los canales de al lado.</p>
+
+        <form id="contactForm" class="form-grid" action="https://formspree.io/f/TU_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="field">
+              <label for="cf-name">Nombre</label>
+              <input id="cf-name" name="name" type="text" required placeholder="Tu nombre">
+            </div>
+            <div class="field">
+              <label for="cf-email">Email</label>
+              <input id="cf-email" name="email" type="email" required placeholder="tu@email.com">
+            </div>
+          </div>
+          <div class="field">
+            <label for="cf-message">Mensaje</label>
+            <textarea id="cf-message" name="message" rows="4" required placeholder="Cuéntame sobre la oportunidad..."></textarea>
+          </div>
+          <button class="form-submit" type="submit">Enviar mensaje</button>
+          <p class="form-status" id="formStatus"></p>
+          <p class="form-note">Se envía directo a mi correo, sin intermediarios ni servidor propio.</p>
+        </form>
       </div>
       <ul class="contact-links">
         <li><span>email</span><a href="mailto:c.cartesperez@uandresbello.edu">c.cartesperez@uandresbello.edu</a></li>
@@ -719,6 +906,38 @@
   document.getElementById('terminal').addEventListener('click', () => input.focus());
 
   boot();
+})();
+
+// ---- Formulario de contacto (Formspree, sin backend propio) ----
+(function(){
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.className = 'form-status show';
+    status.textContent = 'Enviando…';
+
+    try{
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if(res.ok){
+        status.className = 'form-status show ok';
+        status.textContent = '✔ Mensaje enviado. Te responderé apenas lo lea.';
+        form.reset();
+      } else {
+        status.className = 'form-status show err';
+        status.textContent = '✕ No se pudo enviar. Escríbeme directo a c.cartesperez@uandresbello.edu';
+      }
+    } catch(err){
+      status.className = 'form-status show err';
+      status.textContent = '✕ No se pudo enviar. Escríbeme directo a c.cartesperez@uandresbello.edu';
+    }
+  });
 })();
 </script>
 
